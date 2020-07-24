@@ -77,7 +77,6 @@ function menu(){
             }
         })
     }
-    //do function add engineer here
     function addEngineer(){
         inquirer.prompt([
             {
@@ -111,8 +110,10 @@ function menu(){
             idArray.push(answers.engineerId)
             createTeam();
     })
+}}
 
     //do function add intern here
+
     function buildTeam(){
         if (!fs.existsSync(OUTPUT_DIR)){
             fs.mkdirSync(OUTPUT_DIR)
@@ -120,7 +121,7 @@ function menu(){
         fs.writeFileSync(outputPath, render(teamMember), "utf-8")
     };
     createManager()
-}}
+
 
 menu()
 // Write code to use inquirer to gather information about the development team members,
