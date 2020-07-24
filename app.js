@@ -113,6 +113,41 @@ function menu(){
 }}
 
     //do function add intern here
+    function addIntern(){
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "internName",
+                message: "what is your interns name?"
+            },
+            {
+                type: "input",
+                name: "internId",
+                message: "what is the interns id?"
+            },
+            {
+                type: "input",
+                name: "internEmail",
+                message: "what is your interns email?",
+            },
+            {
+                type: "input",
+                name: "internSchool",
+                message: "where does your intern attend school?"
+            }
+
+        ]).then(answers => {
+            const intern = new Intern(
+                answers.internName, 
+                answers.internId, 
+                answers.internEmail, 
+                answers.internSchool)
+            teamMember.push(intern)
+            idArray.push(answers.internId)
+            createTeam();
+    })
+}}
+
 
     function buildTeam(){
         if (!fs.existsSync(OUTPUT_DIR)){
