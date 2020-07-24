@@ -36,21 +36,21 @@ function menu(){
                 // validate: 
             },{
                 type: "input",
-                name: "managerEmail",
-                message: "what is your manager email"
+                name: "managerOfficeNum",
+                message: "what is your manager office number"
                 // validate:
             },{
                 type: "input",
-                name: "managerOfficeNum",
-                message: "what is your manager office number"
+                name: "managerEmail",
+                message: "what is your manager email"
                 // validate:
             }
         ]).then(answers => {
             const manager = new Manager(
                 answers.managerName, 
                 answers.managerId, 
-                answers.managerOfficeNum, 
-                answers.managerEmail)
+                answers.managerEmail, 
+                answers.managerOfficeNum)
             teamMember.push(manager)
             idArray.push(answers.managerId)
             createTeam();
@@ -106,12 +106,12 @@ function menu(){
                 answers.engineerId, 
                 answers.engineerEmail, 
                 answers.engineerGitHub)
-            teamMember.push(engineer)
-            idArray.push(answers.engineerId)
-            createTeam();
-    })
-}}
-
+                teamMember.push(engineer)
+                idArray.push(answers.engineerId)
+                createTeam();
+            })
+            
+        }
     //do function add intern here
     function addIntern(){
         inquirer.prompt([
@@ -135,19 +135,19 @@ function menu(){
                 name: "internSchool",
                 message: "where does your intern attend school?"
             }
-
+            
         ]).then(answers => {
             const intern = new Intern(
                 answers.internName, 
                 answers.internId, 
                 answers.internEmail, 
                 answers.internSchool)
-            teamMember.push(intern)
-            idArray.push(answers.internId)
-            createTeam();
-    })
-}}
-
+                teamMember.push(intern)
+                idArray.push(answers.internId)
+                createTeam();
+            })
+        }
+        
 
     function buildTeam(){
         if (!fs.existsSync(OUTPUT_DIR)){
@@ -156,6 +156,7 @@ function menu(){
         fs.writeFileSync(outputPath, render(teamMember), "utf-8")
     };
     createManager()
+}
 
 
 menu()
